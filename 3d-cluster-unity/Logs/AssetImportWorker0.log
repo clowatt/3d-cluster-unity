@@ -1,0 +1,100 @@
+Using pre-set license
+
+ COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+52807
+Successfully changed project path to: /Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity
+/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 68.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.5f1 (8095aa901b9b)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Assets
+GfxDevice: creating device client; threaded=0
+2021-05-04 19:26:40.888 Unity[44534:2883442] Color LCD preferred device: Intel(R) Iris(TM) Graphics 6100 (low power)
+2021-05-04 19:26:40.888 Unity[44534:2883442] Metal devices available: 1
+2021-05-04 19:26:40.888 Unity[44534:2883442] 0: Intel(R) Iris(TM) Graphics 6100 (low power)
+2021-05-04 19:26:40.889 Unity[44534:2883442] Using device Intel(R) Iris(TM) Graphics 6100 (low power)
+Initializing Metal device caps: Intel(R) Iris(TM) Graphics 6100
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56534
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.5f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.007407 seconds.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 38.55 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  5.721 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.002683 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.38 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.956 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.59 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1115 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 109.7 MB.
+System memory in use after: 109.7 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1557.
+Total: 7.731393 ms (FindLiveObjects: 1.496320 ms CreateObjectMapping: 0.199194 ms MarkObjects: 5.812305 ms  DeleteObjects: 0.219629 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/eso0932a.tif
+  artifactKey: Guid(5b6cfce5b481b4b579d26d373ed3898a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/eso0932a.tif using Guid(5b6cfce5b481b4b579d26d373ed3898a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c112457362eaf5cc5ac4a9bd7fd4bc5') in 2.694747 seconds
+  Import took 2.707203 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 132.703956 seconds.
+  path: Assets/eso0932a.tif
+  artifactKey: Guid(5b6cfce5b481b4b579d26d373ed3898a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/eso0932a.tif using Guid(5b6cfce5b481b4b579d26d373ed3898a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e8941867ebe849abc00ec0c8dc3ce34') in 0.385660 seconds
+  Import took 0.391891 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 91.762553 seconds.
+  path: Assets/skymaterial.mat
+  artifactKey: Guid(aced617114ee6415b8542362e9fe2022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/skymaterial.mat using Guid(aced617114ee6415b8542362e9fe2022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bb684049e8f7523c4f74def52a2b67c') in 4.476864 seconds
+  Import took 4.482671 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 192.288015 seconds.
+  path: Assets/skymaterial.mat
+  artifactKey: Guid(aced617114ee6415b8542362e9fe2022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/skymaterial.mat using Guid(aced617114ee6415b8542362e9fe2022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '861d6e5677f71ac43998d5849ffe6679') in 0.183307 seconds
+  Import took 0.194534 seconds .
+

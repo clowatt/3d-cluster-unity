@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\GetStars.cs" />
+     <None Include="Assets\DataFiles\snapshot.txt" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -630,6 +631,24 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+        <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+        <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/Unity.Addressables.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+        <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+        <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+        <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+        <HintPath>/Users/tasha/Documents/GitHub/3d-cluster-unity/3d-cluster-unity/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

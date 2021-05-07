@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: aced617114ee6415b8542362e9fe2022, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.13056105, g: 0.11952234, b: 0.1285887, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 2034006734}
   - component: {fileID: 2034006735}
   m_Layer: 0
-  m_Name: StarInitializeObject
+  m_Name: InitializeStars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -343,3 +343,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Star: {fileID: 446260060437403108, guid: 998142205b5214fa6a74f02bd2037337, type: 3}
+  assetFileLocation: Assets/DataFiles/snapshot.txt

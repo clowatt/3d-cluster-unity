@@ -7,6 +7,7 @@ public class GetStars : MonoBehaviour
 {
     // Reference to the Prefab
     public GameObject Star;
+    [SerializeField] string assetFileLocation = "Assets/DataFiles/snapshot.txt";
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class GetStars : MonoBehaviour
 
     void getFromFile()
     {
-        string assetFileLocation = "Assets/DataFiles/snapshot.txt";
+        
         Addressables.LoadAssetAsync<TextAsset>(assetFileLocation).Completed += handle =>
         {
             var fullFile = handle.Result.text;

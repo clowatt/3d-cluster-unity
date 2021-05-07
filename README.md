@@ -21,7 +21,7 @@ Create a 3D visualization of a star cluster with Unity
 
 
 ## Requirements
-- Unity 2021
+- Unity 2020
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

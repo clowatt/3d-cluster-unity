@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class MoveCamera : MonoBehaviour
 {
 
+    [SerializeField] float anglePerSec = 10.0f;
+    [SerializeField] float cameraMoveSpeed = 0.5f;
     PlayerActions input;
 
     // Store the Vector2 result from CameraControl.Movement to move camera
@@ -42,11 +44,15 @@ public class MoveCamera : MonoBehaviour
 
     void HandleMovement()
     {
-        float xValue = currentMovement.x * Time.deltaTime;;
-        float yValue = currentVerticalMovement * Time.deltaTime;
-        float zValue = currentMovement.y * Time.deltaTime;;
+        float xValue = currentMovement.x * Time.deltaTime * cameraMoveSpeed;
+        float yValue = currentVerticalMovement * Time.deltaTime * cameraMoveSpeed;
+        float zValue = currentMovement.y * Time.deltaTime * cameraMoveSpeed;
         transform.Translate(xValue,yValue,zValue);
 
+        float xRotate = currentRotation.x * Time.deltaTime * anglePerSec;
+        float yRotate = currentRotation.y * Time.deltaTime * anglePerSec;
+
+        transform.Rotate(xRotate, yRotate, 0);
     }
 
     void OnEnable()

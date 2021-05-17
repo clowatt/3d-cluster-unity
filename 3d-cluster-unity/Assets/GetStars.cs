@@ -33,8 +33,10 @@ public class GetStars : MonoBehaviour
             var fullFile = handle.Result.text;
             var lines = fullFile.Split('\n');
             
-            // 1 less than lines.Length as the length of the array is 1 longer than the lines in the file
-            // Start at 1 as 0 is the header line
+            
+            // Start at i= 1 because i = 0 is the header line
+            // 1 less than lines.Length as the length of the array 
+            //     is 1 longer than the lines in the file
             for (int i = 1; i < lines.Length - 1; i++)
             {
                 var singleLine = lines[i].Split(',');

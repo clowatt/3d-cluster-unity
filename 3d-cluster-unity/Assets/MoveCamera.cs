@@ -8,10 +8,13 @@ public class MoveCamera : MonoBehaviour
 
     PlayerActions input;
 
-    // Store the Vector2 result from CameraControl.Movement
+    // Store the Vector2 result from CameraControl.Movement to move camera
     Vector2 currentMovement;
 
-    // Store the Vector2 result from CameraControl.Movement
+    // Store the up/down result from CameraControl.VerticalMovement to move camera
+    float currentVerticalMovement;
+
+    // Store the Vector2 result from CameraControl.Rotation to rotate camera
     Vector2 currentRotation;
 
     //Awake is called when the script is first built
@@ -21,6 +24,7 @@ public class MoveCamera : MonoBehaviour
 
         // Get input, += callback context. => lamdba expression to do something.
         input.CameraControl.Movement.performed += ctx => currentMovement = ctx.ReadValue<Vector2>();
+        input.CameraControl.VerticalMovement.performed += ctx => currentVerticalMovement = ctx.ReadValue<float>();
         input.CameraControl.Rotation.performed += ctx => currentRotation = ctx.ReadValue<Vector2>();
     } 
 
@@ -39,7 +43,7 @@ public class MoveCamera : MonoBehaviour
     void HandleMovement()
     {
         float xValue = currentMovement.x * Time.deltaTime;;
-        float yValue = 0;
+        float yValue = currentVerticalMovement * Time.deltaTime;
         float zValue = currentMovement.y * Time.deltaTime;;
         transform.Translate(xValue,yValue,zValue);
 

@@ -11,7 +11,7 @@
                     "id": "7da07785-496d-40c0-97a4-5366804af25a",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Rotation",
@@ -19,7 +19,15 @@
                     "id": "22eea84d-ebb1-4f18-be84-8a0c2dda19ff",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "VerticalMovement",
+                    "type": "Value",
+                    "id": "0f7bca22-33fd-44a4-9818-2661413b7c51",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -82,7 +90,7 @@
                     "name": "Arrows",
                     "id": "3631b0c8-9dd7-411a-b7ef-7696b4c39825",
                     "path": "2DVector",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
@@ -150,7 +158,7 @@
                     "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "Main Control Scheme",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -161,7 +169,7 @@
                     "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "Main Control Scheme",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -172,7 +180,7 @@
                     "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "Main Control Scheme",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -183,8 +191,41 @@
                     "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
-                    "groups": "New control scheme",
+                    "groups": "Main Control Scheme",
                     "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "QE",
+                    "id": "a31abd6e-91d0-41fe-97a6-8a476452797b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerticalMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "154eb4b1-2e85-498b-b8db-6fa507815785",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main Control Scheme",
+                    "action": "VerticalMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "62cbe5cc-62b0-42d6-85db-c1ae1c2fdf5c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Main Control Scheme",
+                    "action": "VerticalMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
@@ -193,8 +234,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "New control scheme",
-            "bindingGroup": "New control scheme",
+            "name": "Main Control Scheme",
+            "bindingGroup": "Main Control Scheme",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",

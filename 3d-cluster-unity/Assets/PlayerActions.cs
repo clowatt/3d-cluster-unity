@@ -24,7 +24,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""id"": ""7da07785-496d-40c0-97a4-5366804af25a"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Rotation"",
@@ -32,7 +32,15 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""id"": ""22eea84d-ebb1-4f18-be84-8a0c2dda19ff"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""VerticalMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""0f7bca22-33fd-44a4-9818-2661413b7c51"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -95,7 +103,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""name"": ""Arrows"",
                     ""id"": ""3631b0c8-9dd7-411a-b7ef-7696b4c39825"",
                     ""path"": ""2DVector"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
@@ -163,7 +171,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""New control scheme"",
+                    ""groups"": ""Main Control Scheme"",
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -174,7 +182,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""New control scheme"",
+                    ""groups"": ""Main Control Scheme"",
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -185,7 +193,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""New control scheme"",
+                    ""groups"": ""Main Control Scheme"",
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -196,8 +204,41 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""New control scheme"",
+                    ""groups"": ""Main Control Scheme"",
                     ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""QE"",
+                    ""id"": ""a31abd6e-91d0-41fe-97a6-8a476452797b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""154eb4b1-2e85-498b-b8db-6fa507815785"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main Control Scheme"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""62cbe5cc-62b0-42d6-85db-c1ae1c2fdf5c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Main Control Scheme"",
+                    ""action"": ""VerticalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -206,8 +247,8 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""New control scheme"",
-            ""bindingGroup"": ""New control scheme"",
+            ""name"": ""Main Control Scheme"",
+            ""bindingGroup"": ""Main Control Scheme"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -237,6 +278,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         m_CameraControl = asset.FindActionMap("CameraControl", throwIfNotFound: true);
         m_CameraControl_Movement = m_CameraControl.FindAction("Movement", throwIfNotFound: true);
         m_CameraControl_Rotation = m_CameraControl.FindAction("Rotation", throwIfNotFound: true);
+        m_CameraControl_VerticalMovement = m_CameraControl.FindAction("VerticalMovement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,12 +330,14 @@ public class @PlayerActions : IInputActionCollection, IDisposable
     private ICameraControlActions m_CameraControlActionsCallbackInterface;
     private readonly InputAction m_CameraControl_Movement;
     private readonly InputAction m_CameraControl_Rotation;
+    private readonly InputAction m_CameraControl_VerticalMovement;
     public struct CameraControlActions
     {
         private @PlayerActions m_Wrapper;
         public CameraControlActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_CameraControl_Movement;
         public InputAction @Rotation => m_Wrapper.m_CameraControl_Rotation;
+        public InputAction @VerticalMovement => m_Wrapper.m_CameraControl_VerticalMovement;
         public InputActionMap Get() { return m_Wrapper.m_CameraControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -309,6 +353,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @Rotation.started -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnRotation;
+                @VerticalMovement.started -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnVerticalMovement;
+                @VerticalMovement.performed -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnVerticalMovement;
+                @VerticalMovement.canceled -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnVerticalMovement;
             }
             m_Wrapper.m_CameraControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -319,22 +366,26 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
+                @VerticalMovement.started += instance.OnVerticalMovement;
+                @VerticalMovement.performed += instance.OnVerticalMovement;
+                @VerticalMovement.canceled += instance.OnVerticalMovement;
             }
         }
     }
     public CameraControlActions @CameraControl => new CameraControlActions(this);
-    private int m_NewcontrolschemeSchemeIndex = -1;
-    public InputControlScheme NewcontrolschemeScheme
+    private int m_MainControlSchemeSchemeIndex = -1;
+    public InputControlScheme MainControlSchemeScheme
     {
         get
         {
-            if (m_NewcontrolschemeSchemeIndex == -1) m_NewcontrolschemeSchemeIndex = asset.FindControlSchemeIndex("New control scheme");
-            return asset.controlSchemes[m_NewcontrolschemeSchemeIndex];
+            if (m_MainControlSchemeSchemeIndex == -1) m_MainControlSchemeSchemeIndex = asset.FindControlSchemeIndex("Main Control Scheme");
+            return asset.controlSchemes[m_MainControlSchemeSchemeIndex];
         }
     }
     public interface ICameraControlActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
+        void OnVerticalMovement(InputAction.CallbackContext context);
     }
 }

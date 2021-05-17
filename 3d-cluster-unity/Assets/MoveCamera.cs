@@ -33,11 +33,15 @@ public class MoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleMovement();
     }
 
     void HandleMovement()
     {
+        float xValue = currentMovement.x * Time.deltaTime;;
+        float yValue = 0;
+        float zValue = currentMovement.y * Time.deltaTime;;
+        transform.Translate(xValue,yValue,zValue);
 
     }
 

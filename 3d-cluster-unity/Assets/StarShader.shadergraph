@@ -151,9 +151,9 @@
     "m_Guid": {
         "m_GuidSerialized": "21e10561-7de6-47e4-b528-e1c127dffcbc"
     },
-    "m_Name": "MainTex",
+    "m_Name": "StarShader",
     "m_DefaultReferenceName": "Texture2D_0205dc23b9c74f65ae5493b34f4bb056",
-    "m_OverrideReferenceName": "_MainTex",
+    "m_OverrideReferenceName": "_StarShader",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

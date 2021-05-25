@@ -14,9 +14,13 @@ public class GetStars : MonoBehaviour
     // Reference to the Prefab
     public GameObject Star;
 
+    // Set the conversion from pc to km
+    public static float kmToPc = 3.24078E-14f;
 
     [SerializeField] string assetFileLocation = "Assets/DataFiles/snapshot.txt";
     
+    // timeScale will multiply how many seconds a step should be for velocity
+    [SerializeField] float timeScale = 3.1536E11f; // seconds in 10000 years
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +37,21 @@ public class GetStars : MonoBehaviour
         
     }
 
-    // Initialize the stars based on provided location in pc
-    void InitializeStarPrefab(float x ,float y, float z)
+    // For apparent reasons, I can't get rid of this without compile errors?
+    void InitializeStarPrefab(float x, float y, float z)
     {
-
         Instantiate(Star, new Vector3(x, y, z), Quaternion.identity);
+    }
+
+    // Initialize the stars based on provided location in pc
+    void InitializeStar(Vector3 starPosition, Vector3 starVelocity)
+    {
+        GameObject newStar;
+        Rigidbody starVel;
+        newStar = (GameObject)Instantiate(Star, starPosition, Quaternion.identity);
+        starVel = newStar.GetComponent<Rigidbody>();
+        starVel.velocity = starVelocity;
+
     }
 
 
@@ -54,20 +68,28 @@ public class GetStars : MonoBehaviour
             // Start at i= 1 because i = 0 is the header line
             // 1 less than lines.Length as the length of the array 
             //     is 1 longer than the lines in the file
+            //for (int i = 1; i < 20; i++)
             for (int i = 1; i < lines.Length - 1; i++)
             {
                 
                 var singleLine = lines[i].Split(',');
-                
+
                 // Beware! y is in the vertical in unity, not z
-                float xL = float.Parse(singleLine[0]); // x in file
-                float yL = float.Parse(singleLine[2]); // z in file
-                float zL = float.Parse(singleLine[1]); // y in file
+                Vector3 starPosition;
+                starPosition.x = float.Parse(singleLine[0]); // x in file               
+                starPosition.y = float.Parse(singleLine[2]); // z in file   
+                starPosition.z = float.Parse(singleLine[1]); // y in file  
 
-                InitializeStarPrefab(xL, yL, zL);
+                // Beware! y is in the vertical in unity, not z
+                Vector3 starVelocity;
+                starVelocity.x = float.Parse(singleLine[3]) * kmToPc *timeScale; //vx in file
+                starVelocity.y = float.Parse(singleLine[5]) * kmToPc *timeScale; //vz in file
+                starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
 
+                //InitializeStar(xL, yL, zL, xV, yV, zV);
+                InitializeStar(starPosition, starVelocity);
                 // Check for max raidus
-                currentRadius = Mathf.Sqrt( (xL*xL) + (yL*yL) + (zL+zL));
+                currentRadius = Mathf.Sqrt( (starPosition.x*starPosition.x) + (starPosition.y*starPosition.y) + (starPosition.z*starPosition.z));
 
                 if (currentRadius > clusterMaxRadius)
                 {
@@ -76,8 +98,8 @@ public class GetStars : MonoBehaviour
 
                 // Update the camera location to be at the max radius
                 
-                mainCamera = GameObject.Find("Main Camera");
-                mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
+                //mainCamera = GameObject.Find("Main Camera");
+                //mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
             }
 
             // Release the asset handler

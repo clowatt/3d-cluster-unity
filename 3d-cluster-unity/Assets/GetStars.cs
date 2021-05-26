@@ -37,20 +37,15 @@ public class GetStars : MonoBehaviour
         
     }
 
-    // For apparent reasons, I can't get rid of this without compile errors?
-    void InitializeStarPrefab(float x, float y, float z)
-    {
-        Instantiate(Star, new Vector3(x, y, z), Quaternion.identity);
-    }
-
     // Initialize the stars based on provided location in pc
-    void InitializeStar(Vector3 starPosition, Vector3 starVelocity)
+    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, int i)
     {
         GameObject newStar;
         Rigidbody starVel;
         newStar = (GameObject)Instantiate(Star, starPosition, Quaternion.identity);
         starVel = newStar.GetComponent<Rigidbody>();
         starVel.velocity = starVelocity;
+        newStar.name = "Star_" + i;
 
     }
 
@@ -87,7 +82,7 @@ public class GetStars : MonoBehaviour
                 starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
 
                 //InitializeStar(xL, yL, zL, xV, yV, zV);
-                InitializeStar(starPosition, starVelocity);
+                InitializeStar(starPosition, starVelocity, i);
                 // Check for max raidus
                 currentRadius = Mathf.Sqrt( (starPosition.x*starPosition.x) + (starPosition.y*starPosition.y) + (starPosition.z*starPosition.z));
 
@@ -120,7 +115,9 @@ public class GetStars : MonoBehaviour
         }
         catch
         {
-            InitializeStarPrefab(0,0,0);
+            Vector3 starPosition = new Vector3(0,0,0);
+            Vector3 starVelocity = new Vector3(0,0,0);
+            InitializeStar(starPosition, starVelocity, 0);
         }
 
     }

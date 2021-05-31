@@ -63,8 +63,10 @@ public class GetStars : MonoBehaviour
             // Start at i= 1 because i = 0 is the header line
             // 1 less than lines.Length as the length of the array 
             //     is 1 longer than the lines in the file
-            //for (int i = 1; i < 20; i++)
-            for (int i = 1; i < lines.Length - 1; i++)
+            // only get 5% of stars:
+            //for (int i = 1; i < ines.Length - 1; i+=20)
+            //for (int i = 1; i < 200; i++)
+            //for (int i = 1; i < lines.Length - 1; i++)
             {
                 
                 var singleLine = lines[i].Split(',');
@@ -76,10 +78,10 @@ public class GetStars : MonoBehaviour
                 starPosition.z = float.Parse(singleLine[1]); // y in file  
 
                 // Beware! y is in the vertical in unity, not z
-                Vector3 starVelocity;
-                starVelocity.x = float.Parse(singleLine[3]) * kmToPc *timeScale; //vx in file
-                starVelocity.y = float.Parse(singleLine[5]) * kmToPc *timeScale; //vz in file
-                starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
+                //Vector3 starVelocity;
+                //starVelocity.x = float.Parse(singleLine[3]) * kmToPc *timeScale; //vx in file
+                //starVelocity.y = float.Parse(singleLine[5]) * kmToPc *timeScale; //vz in file
+                //starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
 
                 //InitializeStar(xL, yL, zL, xV, yV, zV);
                 InitializeStar(starPosition, starVelocity, i);

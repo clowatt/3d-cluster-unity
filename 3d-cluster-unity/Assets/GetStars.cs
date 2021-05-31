@@ -38,7 +38,7 @@ public class GetStars : MonoBehaviour
     }
 
     // Initialize the stars based on provided location in pc
-    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, int i)
+    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, float starMass, int startType, int i)
     {
         GameObject newStar;
         Rigidbody starVel;
@@ -59,32 +59,51 @@ public class GetStars : MonoBehaviour
             var lines = fullFile.Split('\n');
             float currentRadius;
             clusterMaxRadius = 0f;
+            Vector3 starPosition = new Vector3(0, 0, 0);
+            Vector3 starVelocity = new Vector3(0, 0, 0);
+            float starMass = 1f; 
+            int starType = 1;
                         
             // Start at i= 1 because i = 0 is the header line
             // 1 less than lines.Length as the length of the array 
             //     is 1 longer than the lines in the file
             // only get 5% of stars:
-            //for (int i = 1; i < ines.Length - 1; i+=20)
-            //for (int i = 1; i < 200; i++)
+            //for (int i = 1; i < lines.Length - 1; i+=20)
+            for (int i = 1; i < 200; i++)
             //for (int i = 1; i < lines.Length - 1; i++)
             {
                 
                 var singleLine = lines[i].Split(',');
+                
+                // If the length is 3 or more, then we assume it has position
+                if (singleLine.Length > 2)
+                {
+                    // Beware! y is in the vertical in unity, not z
+                    starPosition.x = float.Parse(singleLine[0]); // x in file               
+                    starPosition.y = float.Parse(singleLine[2]); // z in file   
+                    starPosition.z = float.Parse(singleLine[1]); // y in file  
+                }
 
-                // Beware! y is in the vertical in unity, not z
-                Vector3 starPosition;
-                starPosition.x = float.Parse(singleLine[0]); // x in file               
-                starPosition.y = float.Parse(singleLine[2]); // z in file   
-                starPosition.z = float.Parse(singleLine[1]); // y in file  
+                // If the length is 6 or more, then we assume it has velocity
+                if (singleLine.Length > 5)
+                {
+                    // Beware! y is in the vertical in unity, not z
+                    starVelocity.x = float.Parse(singleLine[3]) * kmToPc *timeScale; //vx in file
+                    starVelocity.y = float.Parse(singleLine[5]) * kmToPc *timeScale; //vz in file
+                    starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
+                }
 
-                // Beware! y is in the vertical in unity, not z
-                //Vector3 starVelocity;
-                //starVelocity.x = float.Parse(singleLine[3]) * kmToPc *timeScale; //vx in file
-                //starVelocity.y = float.Parse(singleLine[5]) * kmToPc *timeScale; //vz in file
-                //starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
+                // If the length is 7 or more, then we assume it has mass and a type
+                if (singleLine.Length > 6)
+                {
+                    starMass = float.Parse(singleLine[6]);
+                    starType = int.Parse(singleLine[7]);
+
+                }
 
                 //InitializeStar(xL, yL, zL, xV, yV, zV);
-                InitializeStar(starPosition, starVelocity, i);
+                InitializeStar(starPosition, starVelocity, starMass, starType, i);
+                
                 // Check for max raidus
                 currentRadius = Mathf.Sqrt( (starPosition.x*starPosition.x) + (starPosition.y*starPosition.y) + (starPosition.z*starPosition.z));
 
@@ -119,7 +138,7 @@ public class GetStars : MonoBehaviour
         {
             Vector3 starPosition = new Vector3(0,0,0);
             Vector3 starVelocity = new Vector3(0,0,0);
-            InitializeStar(starPosition, starVelocity, 0);
+            InitializeStar(starPosition, starVelocity, 1f, 1, 0);
         }
 
     }

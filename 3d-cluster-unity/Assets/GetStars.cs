@@ -38,14 +38,19 @@ public class GetStars : MonoBehaviour
     }
 
     // Initialize the stars based on provided location in pc
-    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, float starMass, int startType, int i)
+    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, float starMass, string starType, int i)
     {
         GameObject newStar;
         Rigidbody starVel;
+        GameObject starSphere; 
         newStar = (GameObject)Instantiate(Star, starPosition, Quaternion.identity);
         starVel = newStar.GetComponent<Rigidbody>();
         starVel.velocity = starVelocity;
+        starVel.mass = starMass;
         newStar.name = "Star_" + i;
+        starSphere = newStar.transform.Find("Star Sphere").gameObject;
+        starSphere.tag = starType;
+
 
     }
 
@@ -62,14 +67,14 @@ public class GetStars : MonoBehaviour
             Vector3 starPosition = new Vector3(0, 0, 0);
             Vector3 starVelocity = new Vector3(0, 0, 0);
             float starMass = 1f; 
-            int starType = 1;
+            string starType = "1";
                         
             // Start at i= 1 because i = 0 is the header line
             // 1 less than lines.Length as the length of the array 
             //     is 1 longer than the lines in the file
             // only get 5% of stars:
-            //for (int i = 1; i < lines.Length - 1; i+=20)
-            for (int i = 1; i < 200; i++)
+            for (int i = 1; i < lines.Length - 1; i+=20)
+            //for (int i = 1; i < 200; i++)
             //for (int i = 1; i < lines.Length - 1; i++)
             {
                 
@@ -97,7 +102,31 @@ public class GetStars : MonoBehaviour
                 if (singleLine.Length > 6)
                 {
                     starMass = float.Parse(singleLine[6]);
-                    starType = int.Parse(singleLine[7]);
+                    if (singleLine[7] == "1.0")
+                    {
+                        starType = "MS";
+                    }
+                    else if (singleLine[7] == "2.0")
+                    {
+                        starType = "ES";
+                    }
+                    else if (singleLine[7] == "3.0")
+                    {
+                        starType = "WD";
+                    }
+                    else if (singleLine[7] == "4.0")
+                    {
+                        starType = "NS";
+                    }
+                    else if (singleLine[7] == "5.0")
+                    {
+                        starType = "BH";
+                    }
+                    else
+                    {
+                        // default to main sequence
+                        starType = "MS";
+                    }
 
                 }
 
@@ -138,7 +167,7 @@ public class GetStars : MonoBehaviour
         {
             Vector3 starPosition = new Vector3(0,0,0);
             Vector3 starVelocity = new Vector3(0,0,0);
-            InitializeStar(starPosition, starVelocity, 1f, 1, 0);
+            InitializeStar(starPosition, starVelocity, 1f, "1", 0);
         }
 
     }

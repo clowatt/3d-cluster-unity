@@ -38,14 +38,19 @@ public class GetStars : MonoBehaviour
     }
 
     // Initialize the stars based on provided location in pc
-    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, float starMass, string startType, int i)
+    void InitializeStar(Vector3 starPosition, Vector3 starVelocity, float starMass, string starType, int i)
     {
         GameObject newStar;
         Rigidbody starVel;
+        GameObject starSphere; 
         newStar = (GameObject)Instantiate(Star, starPosition, Quaternion.identity);
         starVel = newStar.GetComponent<Rigidbody>();
         starVel.velocity = starVelocity;
+        starVel.mass = starMass;
         newStar.name = "Star_" + i;
+        starSphere = newStar.transform.Find("Star Sphere").gameObject;
+        starSphere.tag = starType;
+
 
     }
 
@@ -97,7 +102,31 @@ public class GetStars : MonoBehaviour
                 if (singleLine.Length > 6)
                 {
                     starMass = float.Parse(singleLine[6]);
-                    starType = singleLine[7];
+                    if (singleLine[7] == "1.0")
+                    {
+                        starType = "MS";
+                    }
+                    else if (singleLine[7] == "2.0")
+                    {
+                        starType = "ES";
+                    }
+                    else if (singleLine[7] == "3.0")
+                    {
+                        starType = "WD";
+                    }
+                    else if (singleLine[7] == "4.0")
+                    {
+                        starType = "NS";
+                    }
+                    else if (singleLine[7] == "5.0")
+                    {
+                        starType = "BH";
+                    }
+                    else
+                    {
+                        // default to main sequence
+                        starType = "MS";
+                    }
 
                 }
 

@@ -29,6 +29,66 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: bd606d7fd77834936aba0ad939028416
+    m_Address: M_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 79d6d330d16014fa89e44d396230be2d
+    m_Address: K_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ce4db64645023450ab0c5a9a117074f4
+    m_Address: Black_Hole
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 5796688a2e9a540b898cb673b7285657
+    m_Address: WhiteDwarf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 68112a4d6b5074f3dbdb015367e80ea7
+    m_Address: F_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6ebaff69986a34d3ba4d8ac686c67a5f
+    m_Address: A_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3affeeb1eb2a445bf9403d6918f2f08e
+    m_Address: B_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 337633e9469354dea8048c83b28979ac
+    m_Address: O_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 6e6fd5dfb87e24ead86468f89062d631
+    m_Address: Neutron Star
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a3b904260b83b45b28d8cd626288c869
+    m_Address: G_Type_Star_MS
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a9c3c2cc3602d4612b67dccd99f151c8, type: 2}
   m_SchemaSet:

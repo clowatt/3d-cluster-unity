@@ -5,22 +5,42 @@ using UnityEngine.AddressableAssets;
 
 public class GetStars : MonoBehaviour
 {
-    // allow the ability to update the main camera
-    GameObject mainCamera;
 
-    // Store the maximum radius of the star cluster
+    // Note: The variables for star data are in StarTypes.cs
+    // 1 unit is 1 solar radius: 1 solar radius =  6.955E5 km
+    // Okay that has to change. 1 unit is 1/4 parsec
+    // As we receive data in km and in parsecs for distance and velocity
+    float convertToKm = 1 / StarTypes.solarRadius; //1 km per solar radius
+    float convertToPc = 1 / 2.25461E-8f; // 1 parsec per solar radius
+
+
+    // We need to be able to know how "far away" the furthest star is from
+    // the centre of mass as a way to initialize the camera.
     float clusterMaxRadius;
+    // So we will need to be able to grab the Main Camera.
+    GameObject mainCamera;
     
-    // Reference to the Prefab
+
+    // We will be instantiating the Star prefab and allowing StarTypes.cs
+    // to modify the different settings of the star
     public GameObject Star;
 
-    // Set the conversion from pc to km
-    public static float kmToPc = 3.24078E-14f;
-
+    
+    // The asset file locaiton is the addressable location of the data file
+    // This defaults to the toy snapshot included in the package
     [SerializeField] string assetFileLocation = "Assets/DataFiles/snapshot.txt";
     
-    // timeScale will multiply how many seconds a step should be for velocity
-    [SerializeField] float timeScale = 3.1536E11f; // seconds in 10000 years
+
+    // To set up the velocity, we need to convert the velocity from km/s to km/yr
+    // The number of seconds in a year
+    float secInYear = 3.154e+7f; 
+    // We gather the number of years
+    [SerializeField] float timeScale = 1000f; // 1000 years start
+    // In the velocity reading we multiple secInYear by timeScale
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +67,7 @@ public class GetStars : MonoBehaviour
         starVel = newStar.GetComponent<Rigidbody>();
         starVel.velocity = starVelocity;
         starVel.mass = starMass;
-        newStar.name = "Star_" + i;
+        newStar.name = "Star_" + i + "_" + starType;
         starSphere = newStar.transform.Find("Star Sphere").gameObject;
         starSphere.tag = starType;
 
@@ -55,6 +75,8 @@ public class GetStars : MonoBehaviour
     }
 
 
+    // This gathers the information from a file and assigns all correct data
+    // to the star prefab
     void GetFromFile()
     {
         // Load the text file from addressable asset location and store in handler
@@ -64,16 +86,17 @@ public class GetStars : MonoBehaviour
             var lines = fullFile.Split('\n');
             float currentRadius;
             clusterMaxRadius = 0f;
+            // Initialize in the event that no star lines are valid
             Vector3 starPosition = new Vector3(0, 0, 0);
             Vector3 starVelocity = new Vector3(0, 0, 0);
             float starMass = 1f; 
-            string starType = "1";
+            string starType = "MS";
                         
             // Start at i= 1 because i = 0 is the header line
             // 1 less than lines.Length as the length of the array 
             //     is 1 longer than the lines in the file
             // only get 5% of stars:
-            for (int i = 1; i < lines.Length - 1; i+=20)
+            for (int i = 1; i < lines.Length - 1; i+=200)
             //for (int i = 1; i < 200; i++)
             //for (int i = 1; i < lines.Length - 1; i++)
             {
@@ -84,18 +107,19 @@ public class GetStars : MonoBehaviour
                 if (singleLine.Length > 2)
                 {
                     // Beware! y is in the vertical in unity, not z
-                    starPosition.x = float.Parse(singleLine[0]); // x in file               
-                    starPosition.y = float.Parse(singleLine[2]); // z in file   
-                    starPosition.z = float.Parse(singleLine[1]); // y in file  
+                    starPosition.x = float.Parse(singleLine[0]) * convertToPc; // x in file               
+                    starPosition.y = float.Parse(singleLine[2]) * convertToPc; // z in file   
+                    starPosition.z = float.Parse(singleLine[1]) * convertToPc; // y in file  
                 }
 
                 // If the length is 6 or more, then we assume it has velocity
                 if (singleLine.Length > 5)
                 {
+                    timeScale = timeScale * secInYear;
                     // Beware! y is in the vertical in unity, not z
-                    starVelocity.x = float.Parse(singleLine[3]) * kmToPc *timeScale; //vx in file
-                    starVelocity.y = float.Parse(singleLine[5]) * kmToPc *timeScale; //vz in file
-                    starVelocity.z = float.Parse(singleLine[4]) * kmToPc *timeScale; //vy in file
+                    starVelocity.x = float.Parse(singleLine[3]) * convertToKm *timeScale; //vx in file
+                    starVelocity.y = float.Parse(singleLine[5]) * convertToKm *timeScale; //vz in file
+                    starVelocity.z = float.Parse(singleLine[4]) * convertToKm *timeScale; //vy in file
                 }
 
                 // If the length is 7 or more, then we assume it has mass and a type
@@ -143,8 +167,8 @@ public class GetStars : MonoBehaviour
 
                 // Update the camera location to be at the max radius
                 
-                //mainCamera = GameObject.Find("Main Camera");
-                //mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
+                mainCamera = GameObject.Find("Main Camera");
+                mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
             }
 
             // Release the asset handler
@@ -167,7 +191,7 @@ public class GetStars : MonoBehaviour
         {
             Vector3 starPosition = new Vector3(0,0,0);
             Vector3 starVelocity = new Vector3(0,0,0);
-            InitializeStar(starPosition, starVelocity, 1f, "1", 0);
+            InitializeStar(starPosition, starVelocity, 1f, "MS", 0);
         }
 
     }

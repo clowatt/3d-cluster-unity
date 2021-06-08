@@ -7,7 +7,6 @@ public class AutoMoveCamera : MonoBehaviour
     [SerializeField] float autoCameraSpeed = 0.1f;
     bool forward = true;   
     float startZValue;
-    [SerializeField] bool autoMoveEnabled = false;
     
     // Start is called before the first frame update
     void Start()
@@ -19,10 +18,7 @@ public class AutoMoveCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (autoMoveEnabled)
-        {
             MoveCameraEnabled();
-        }
     }
 
     void MoveCameraEnabled()

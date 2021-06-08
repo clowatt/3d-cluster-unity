@@ -16,6 +16,9 @@ public class StarTypes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        // Since the units are very large, we'll be using the same size for all objects.
+        gameObject.transform.localScale = new Vector3(0.01f ,0.01f, 0.01f);
 
         // if the tag is '1' or '2' then use Main Sequence
         // if the tag is 3 then use White Dwarf
@@ -53,9 +56,6 @@ public class StarTypes : MonoBehaviour
     void MainSequenceStar()
     {
         Debug.Log("Main Sequence");
-        // Setting the main star size
-        // since 1 unit is 1 solar radius, we actually need a scale of 2, 2, 2 
-        gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
 
         // Adressable Asset: G_Type_Star_MS
         string starMaterialAddress = "G_Type_Star_MS";
@@ -66,9 +66,6 @@ public class StarTypes : MonoBehaviour
     void WhiteDwarf()
     {
         Debug.Log("WhiteDwarf");
-        // Raidus set to 2% of that of the sun
-        // But recalling it's 1/2 of the sun, we need to multiply by 2
-        gameObject.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
 
         // Adressable Asset: WhiteDwarf
         string starMaterialAddress = "WhiteDwarf";
@@ -79,7 +76,7 @@ public class StarTypes : MonoBehaviour
     {
         Debug.Log("NeutronStar");
         // Radius will be the smallest possible; so 0.01
-        gameObject.transform.localScale = new Vector3(0.01f ,0.01f, 0.01f);
+        //gameObject.transform.localScale = new Vector3(0.01f ,0.01f, 0.01f);
 
         // Adressable Asset: Neutron Star
         string starMaterialAddress = "Neutron Star";
@@ -89,14 +86,6 @@ public class StarTypes : MonoBehaviour
     void BlackHole()
     {
         Debug.Log("BlackHole");
-        // Radius: will be the Schwarzschild radius: Rg = 2GM/c^2
-        // Where: G: gravitational constant
-        //float gConstant = 6.67408E-11f;
-        // Where: c: speed of light
-        //float cLight = 3.00E8f;
-        //float blackHoleRadius = ( 2 * gConstant * starMass.mass ) / (cLight * cLight);
-        // Right now we'll leave it at 0.05
-        gameObject.transform.localScale = new Vector3(0.05f ,0.05f, 0.05f);
 
         // Adressable Asset: Black_Hole
         string starMaterialAddress = "Black_Hole";

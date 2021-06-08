@@ -7,11 +7,10 @@ public class GetStars : MonoBehaviour
 {
 
     // Note: The variables for star data are in StarTypes.cs
-    // 1 unit is 1 solar radius: 1 solar radius =  6.955E5 km
-    // Okay that has to change. 1 unit is 1/4 parsec
-    // As we receive data in km and in parsecs for distance and velocity
-    float convertToKm = 1 / StarTypes.solarRadius; //1 km per solar radius
-    float convertToPc = 1 / 2.25461E-8f; // 1 parsec per solar radius
+    // 1 unit is 0.001 parsec
+    [SerializeField] float pcUnits = 0.001f;
+    // Number of parsecs in a km: 3.24078e-14
+    float pcInKm = 3.24078e-14f;
 
 
     // We need to be able to know how "far away" the furthest star is from
@@ -28,7 +27,7 @@ public class GetStars : MonoBehaviour
     
     // The asset file locaiton is the addressable location of the data file
     // This defaults to the toy snapshot included in the package
-    [SerializeField] string assetFileLocation = "Assets/DataFiles/snapshot.txt";
+    [SerializeField] string assetFileLocation = "ToySnapshot";
     
 
     // To set up the velocity, we need to convert the velocity from km/s to km/yr
@@ -39,6 +38,8 @@ public class GetStars : MonoBehaviour
     // In the velocity reading we multiple secInYear by timeScale
 
 
+    // What % of stars do you want sampled?
+    [SerializeField] int stepSize = 1; //the step size determines how many are sampled
 
 
     // Start is called before the first frame update
@@ -79,6 +80,9 @@ public class GetStars : MonoBehaviour
     // to the star prefab
     void GetFromFile()
     {
+        float convertToKm = pcInKm / pcUnits; //1 km per solar radius
+        float convertToPc = 1f / pcUnits; // for 1 parsec we need 1000 units
+
         // Load the text file from addressable asset location and store in handler
         Addressables.LoadAssetAsync<TextAsset>(assetFileLocation).Completed += handle =>
         {
@@ -95,10 +99,9 @@ public class GetStars : MonoBehaviour
             // Start at i= 1 because i = 0 is the header line
             // 1 less than lines.Length as the length of the array 
             //     is 1 longer than the lines in the file
-            // only get 5% of stars:
-            for (int i = 1; i < lines.Length - 1; i+=200)
-            //for (int i = 1; i < 200; i++)
-            //for (int i = 1; i < lines.Length - 1; i++)
+            // the stepSize allows for quickly switching between percents in 
+            // the unity editor
+            for (int i = 1; i < lines.Length - 1; i+= stepSize)
             {
                 
                 var singleLine = lines[i].Split(',');

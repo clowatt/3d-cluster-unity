@@ -18,6 +18,9 @@ public class GetStars : MonoBehaviour
     float clusterMaxRadius;
     // So we will need to be able to grab the Main Camera.
     GameObject mainCamera;
+
+    // But we also want to make it available to start at the center
+    [SerializeField] bool cameraStartCenter = true;
     
 
     // We will be instantiating the Star prefab and allowing StarTypes.cs
@@ -32,9 +35,10 @@ public class GetStars : MonoBehaviour
 
     // To set up the velocity, we need to convert the velocity from km/s to km/yr
     // The number of seconds in a year
-    float secInYear = 3.154e+7f; 
+    //float secInYear = 3.154e+7f; 
     // We gather the number of years
-    [SerializeField] float timeScale = 1000f; // 1000 years start
+    //[SerializeField] float timeScale = 1000f; // 1000 years start
+    [SerializeField] float timeScale = 3.154e+11f; // 1000 years start
     // In the velocity reading we multiple secInYear by timeScale
 
 
@@ -118,7 +122,7 @@ public class GetStars : MonoBehaviour
                 // If the length is 6 or more, then we assume it has velocity
                 if (singleLine.Length > 5)
                 {
-                    timeScale = timeScale * secInYear;
+                    //timeScale = timeScale * secInYear;
                     // Beware! y is in the vertical in unity, not z
                     starVelocity.x = float.Parse(singleLine[3]) * convertToKm *timeScale; //vx in file
                     starVelocity.y = float.Parse(singleLine[5]) * convertToKm *timeScale; //vz in file
@@ -170,8 +174,12 @@ public class GetStars : MonoBehaviour
 
                 // Update the camera location to be at the max radius
                 
-                mainCamera = GameObject.Find("Main Camera");
-                mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
+                if (cameraStartCenter == false)
+                {
+                    mainCamera = GameObject.Find("Main Camera");
+                    mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
+                }
+                
             }
 
             // Release the asset handler

@@ -6,9 +6,6 @@ using UnityEngine.AddressableAssets;
 public class StarTypes : MonoBehaviour
 {
 
-    
-    // how many parsecs are in a km
-    public static float kmToPc = 3.24078E-14f; // how many parsecs are in a km
     public static float solarMass = 1.989E30f; //kg
     public static float solarRadius = 6.955E5f; //km times kmToPc
     public static float solarLuminosity = 4.4f; // Mv in MK table

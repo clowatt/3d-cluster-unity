@@ -4,43 +4,41 @@ using UnityEngine;
 
 public class AutoMoveCamera : MonoBehaviour
 {
-    [SerializeField] float autoCameraSpeed = 0.1f;
-    bool forward = true;   
-    float startZValue;
-    
+    [SerializeField] float autoCameraSpeed = 0.5f;
+
+    Vector3 startValue;
+    Vector3 endValue;
+    float timeElapsed=0;
+    // The total duration should be how long it'll take to get to the center
+    float lerpDuration;
+
     // Start is called before the first frame update
     void Start()
     {
-        // Store the starting position of the camera
-        startZValue = transform.position.z; 
+        startValue = transform.position;
+        lerpDuration = Mathf.Abs(transform.position.z/autoCameraSpeed);
+        Debug.Log(lerpDuration);
+        endValue = new Vector3(0,0,0);
+        StartCoroutine(LerpPosition(endValue, lerpDuration));
     }
 
     // Update is called once per frame
     void Update()
     {
-            MoveCameraEnabled();
+        
     }
 
-    void MoveCameraEnabled()
+    IEnumerator LerpPosition(Vector3 targetPosition, float duration)
     {
-        // if the position is not yet at the centre 
-        if (transform.position.z >= 0f)
+        float time = 0f;
+        Vector3 startPosition = transform.position;
+
+        while (time < duration)
         {
-            forward = false;
-            transform.Translate(0f, 0f, -autoCameraSpeed);
+            transform.position = Vector3.Lerp(startPosition, targetPosition, time/duration);
+            time += Time.deltaTime;
+            yield return null;
         }
-        else if (forward)
-        {
-            transform.Translate(0f, 0f, autoCameraSpeed);
-        } 
-        else if (transform.position.z < startZValue)
-        {
-            // Do nothing
-            transform.Translate(0f, 0f, 0f);
-        }
-        else 
-        {
-            transform.Translate(0f, 0f, -autoCameraSpeed);
-        }
+
     }
 }

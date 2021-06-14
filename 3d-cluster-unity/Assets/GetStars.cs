@@ -20,7 +20,9 @@ public class GetStars : MonoBehaviour
     GameObject mainCamera;
 
     // But we also want to make it available to start at the center
-    [SerializeField] bool cameraStartCenter = true;
+    [SerializeField] bool cameraStartCenter = false;
+
+    [SerializeField] bool cameraStartOutskirt = true;
     
 
     // We will be instantiating the Star prefab and allowing StarTypes.cs
@@ -35,10 +37,10 @@ public class GetStars : MonoBehaviour
 
     // To set up the velocity, we need to convert the velocity from km/s to km/yr
     // The number of seconds in a year
-    //float secInYear = 3.154e+7f; 
+    float secInYear = 3.154e+7f; 
     // We gather the number of years
-    //[SerializeField] float timeScale = 1000f; // 1000 years start
-    [SerializeField] float timeScale = 3.154e+11f; // 1000 years start
+    [SerializeField] float timeScale = 1000f; // 1000 years start
+    //[SerializeField] float timeScale = 3.154e+11f; // 10000 years start
     // In the velocity reading we multiple secInYear by timeScale
 
 
@@ -84,6 +86,7 @@ public class GetStars : MonoBehaviour
     // to the star prefab
     void GetFromFile()
     {
+        float timeAdjustment = timeScale* secInYear;
         float convertToKm = pcInKm / pcUnits; //1 km per solar radius
         float convertToPc = 1f / pcUnits; // for 1 parsec we need 1000 units
 
@@ -117,6 +120,11 @@ public class GetStars : MonoBehaviour
                     starPosition.x = float.Parse(singleLine[0]) * convertToPc; // x in file               
                     starPosition.y = float.Parse(singleLine[2]) * convertToPc; // z in file   
                     starPosition.z = float.Parse(singleLine[1]) * convertToPc; // y in file  
+                    currentRadius = Mathf.Sqrt( (starPosition.x*starPosition.x) + (starPosition.y*starPosition.y) + (starPosition.z*starPosition.z));
+                    if (currentRadius > clusterMaxRadius)
+                    {
+                        clusterMaxRadius = currentRadius;
+                    }
                 }
 
                 // If the length is 6 or more, then we assume it has velocity
@@ -124,9 +132,9 @@ public class GetStars : MonoBehaviour
                 {
                     //timeScale = timeScale * secInYear;
                     // Beware! y is in the vertical in unity, not z
-                    starVelocity.x = float.Parse(singleLine[3]) * convertToKm *timeScale; //vx in file
-                    starVelocity.y = float.Parse(singleLine[5]) * convertToKm *timeScale; //vz in file
-                    starVelocity.z = float.Parse(singleLine[4]) * convertToKm *timeScale; //vy in file
+                    starVelocity.x = float.Parse(singleLine[3]) * convertToKm *timeAdjustment; //vx in file
+                    starVelocity.y = float.Parse(singleLine[5]) * convertToKm *timeAdjustment; //vz in file
+                    starVelocity.z = float.Parse(singleLine[4]) * convertToKm *timeAdjustment; //vy in file
                 }
 
                 // If the length is 7 or more, then we assume it has mass and a type
@@ -164,20 +172,18 @@ public class GetStars : MonoBehaviour
                 //InitializeStar(xL, yL, zL, xV, yV, zV);
                 InitializeStar(starPosition, starVelocity, starMass, starType, i);
                 
-                // Check for max raidus
-                currentRadius = Mathf.Sqrt( (starPosition.x*starPosition.x) + (starPosition.y*starPosition.y) + (starPosition.z*starPosition.z));
-
-                if (currentRadius > clusterMaxRadius)
-                {
-                    clusterMaxRadius = currentRadius;
-                }
-
                 // Update the camera location to be at the max radius
                 
-                if (cameraStartCenter == false)
+                if (cameraStartOutskirt == true)
                 {
                     mainCamera = GameObject.Find("Main Camera");
                     mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
+                }
+
+                if (cameraStartCenter == true) 
+                {
+                    mainCamera = GameObject.Find("Main Camera");
+                    mainCamera.transform.position = new Vector3(0, 0, 0);
                 }
                 
             }

@@ -15,14 +15,15 @@ public class GetStars : MonoBehaviour
 
     // We need to be able to know how "far away" the furthest star is from
     // the centre of mass as a way to initialize the camera.
-    float clusterMaxRadius;
+    public float clusterMaxRadius;
+    float currentRadius;
     // So we will need to be able to grab the Main Camera.
     GameObject mainCamera;
 
     // But we also want to make it available to start at the center
-    [SerializeField] bool cameraStartCenter = false;
+    public bool cameraStartCenter;
 
-    [SerializeField] bool cameraStartOutskirt = true;
+    public bool cameraStartOutskirt;
     
 
     // We will be instantiating the Star prefab and allowing StarTypes.cs
@@ -51,6 +52,12 @@ public class GetStars : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        // if both are selected to true, then we start at the outskirt
+        if (cameraStartOutskirt == true && cameraStartCenter != false)
+        {
+            cameraStartCenter = false;    
+        }
 
         // Initialize the Cluster
         // This will also set the camera start location
@@ -88,14 +95,13 @@ public class GetStars : MonoBehaviour
     {
         float timeAdjustment = timeScale* secInYear;
         float convertToKm = pcInKm / pcUnits; //1 km per solar radius
-        float convertToPc = 1f / pcUnits; // for 1 parsec we need 1000 units
+        float convertToPc = 1f / pcUnits; // for 1 parsec we need 1000 units if pcunits = 0.001
 
         // Load the text file from addressable asset location and store in handler
         Addressables.LoadAssetAsync<TextAsset>(assetFileLocation).Completed += handle =>
         {
             var fullFile = handle.Result.text;
             var lines = fullFile.Split('\n');
-            float currentRadius;
             clusterMaxRadius = 0f;
             // Initialize in the event that no star lines are valid
             Vector3 starPosition = new Vector3(0, 0, 0);
@@ -178,9 +184,7 @@ public class GetStars : MonoBehaviour
                 {
                     mainCamera = GameObject.Find("Main Camera");
                     mainCamera.transform.position = new Vector3(0, 0, -clusterMaxRadius);
-                }
-
-                if (cameraStartCenter == true) 
+                } else if (cameraStartCenter == true) 
                 {
                     mainCamera = GameObject.Find("Main Camera");
                     mainCamera.transform.position = new Vector3(0, 0, 0);

@@ -10,20 +10,19 @@ public class AutoMoveCamera : MonoBehaviour
     Vector3 endValue;
     // The total duration should be how long it'll take to get to the center
     float lerpDuration;
-    bool movingForward;
-   
+
+    int frames = 0; 
 
     // Start is called before the first frame update
     void Start()
     {
-        movingForward = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (movingForward == true)
+        if (frames == 1)
         {
             startValue = transform.position;
             lerpDuration = Mathf.Abs(transform.position.z/autoCameraSpeed);
@@ -31,7 +30,8 @@ public class AutoMoveCamera : MonoBehaviour
             endValue = new Vector3(0,0,0);
             StartCoroutine(LerpPosition(endValue, lerpDuration)); 
         }
-        movingForward = false;       
+        frames += 1;
+        
     }
 
     IEnumerator LerpPosition(Vector3 targetPosition, float duration)
@@ -45,6 +45,6 @@ public class AutoMoveCamera : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-
+        transform.position = new Vector3 (0, 0, 0);
     }
 }

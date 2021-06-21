@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Black Hole
-  m_Shader: {fileID: -6465566751694194690, guid: 09e8249a1509341bb8fe1fe13f85a056, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2124a232b4f024bcf98e0966fd7d00de, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -42,4 +42,6 @@ Material:
     m_Floats: []
     m_Colors:
     - Color_36288efbdd12400a91e640d82f171d9b: {r: 0.047058824, g: 0, b: 0.1254902, a: 0}
+    - Color_3f5dba02c8804b6493f656107c767f8d: {r: 0, g: 0, b: 0, a: 0}
+    - Color_443c5031c9904e888f6d5e0289bc2fa1: {r: 0.19262755, g: 0.017933436, b: 0.2924528, a: 0}
   m_BuildTextureStacks: []

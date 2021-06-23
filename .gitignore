@@ -67,3 +67,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 3d-cluster-unity/Assets/DataFiles/47Tuc.csv
 3d-cluster-unity/Assets/DataFiles/47Tuc.csv.meta
+3d-cluster-unity/Recordings/movie_016.mp4
+*.mp4

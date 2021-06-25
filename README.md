@@ -15,10 +15,8 @@ Create a 3D visualization of a star cluster with Unity
 - [x] Generate stars from 6-field (position - velocity) comma deliniated file
 - [x] Make the camera move in play mode with keyboard operations
 - [x] Automated Camera scene to zoom in and out of the star cluster when 'play' is pressed
-- [ ] Adjustable size, colour, and luminosity for star initialization
-- [ ] Create a 3D Milky Way prefab 
-- [ ] Create different scenes based on the outcome of the visualiation
-- [ ] Add velocity vectors to the stars to be visible
+- [x] Adjustable size, colour, and luminosity for star initialization
+- [x] Add velocity vectors to the stars to be visible - completed with trailing motion
 
 
 ## Requirements

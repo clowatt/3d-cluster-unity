@@ -8,7 +8,7 @@ public class GetStars : MonoBehaviour
 
     // Note: The variables for star data are in StarTypes.cs
     // 1 unit is 0.001 parsec
-    [SerializeField] float pcUnits = 0.001f;
+    [SerializeField] public float pcUnits = 0.001f;
     // Number of parsecs in a km: 3.24078e-14
     float pcInKm = 3.24078e-14f;
 

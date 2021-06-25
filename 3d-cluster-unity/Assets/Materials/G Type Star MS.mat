@@ -44,7 +44,7 @@ Material:
     m_Floats:
     - Vector1_41b4f71a193a49b79884e2a2fae534c0: 0
     - Vector1_61e318c9aad8428a8a4db1c10286624c: 0
-    - Vector1_9de9354a9cb84736b62202057445fb8a: 4
+    - Vector1_9de9354a9cb84736b62202057445fb8a: 8
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
@@ -96,8 +96,8 @@ Material:
     - Color_20fc3673359c4359aa5c7d5f1d5a0b81: {r: 0, g: 0, b: 0, a: 0}
     - Color_36288efbdd12400a91e640d82f171d9b: {r: 191.74902, g: 146.57256, b: 16.062746, a: 0}
     - Color_8236902819a54427b8bb1260aaa741c2: {r: 0, g: 0, b: 0, a: 0}
-    - Color_a19d2a7b93e8445597812b977af34e56: {r: 1, g: 0.9456897, b: 0, a: 0}
-    - Color_a67c2b707ba24724a9a0393acad22a02: {r: 0.8867924, g: 0.84058106, b: 0.4141153, a: 0}
+    - Color_a19d2a7b93e8445597812b977af34e56: {r: 0.9056604, g: 0.8156323, b: 0, a: 1}
+    - Color_a67c2b707ba24724a9a0393acad22a02: {r: 1, g: 0.8901857, b: 0.2688679, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -15,7 +15,7 @@ public class GetStars : MonoBehaviour
 
     // We need to be able to know how "far away" the furthest star is from
     // the centre of mass as a way to initialize the camera.
-    public float clusterMaxRadius;
+    float clusterMaxRadius;
     float currentRadius;
     // So we will need to be able to grab the Main Camera.
     GameObject mainCamera;

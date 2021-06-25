@@ -259,7 +259,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -122, y: 10}
-  m_SizeDelta: {x: 275, y: 175}
+  m_SizeDelta: {x: 275, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507512006
 MonoBehaviour:
@@ -282,7 +282,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1261,10 +1261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pcUnits: 0.1
-  clusterMaxRadius: 0
   cameraStartCenter: 0
   cameraStartOutskirt: 1
   Star: {fileID: 446260060437403108, guid: 998142205b5214fa6a74f02bd2037337, type: 3}
   assetFileLocation: 47Tuc
   timeScale: 0
-  stepSize: 10
+  stepSize: 5

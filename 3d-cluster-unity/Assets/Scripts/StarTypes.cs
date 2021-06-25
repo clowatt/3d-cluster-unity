@@ -15,7 +15,7 @@ public class StarTypes : MonoBehaviour
     {
         
         // Since the units are very large, we'll be using the same size for all objects.
-        gameObject.transform.localScale = new Vector3(0.1f ,0.1f, 0.1f);
+        gameObject.transform.localScale = new Vector3(0.05f ,0.05f, 0.05f);
 
         // if the tag is '1' or '2' then use Main Sequence
         // if the tag is 3 then use White Dwarf

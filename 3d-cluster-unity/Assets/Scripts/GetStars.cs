@@ -8,14 +8,14 @@ public class GetStars : MonoBehaviour
 
     // Note: The variables for star data are in StarTypes.cs
     // 1 unit is 0.001 parsec
-    [SerializeField] float pcUnits = 0.001f;
+    [SerializeField] public float pcUnits = 0.001f;
     // Number of parsecs in a km: 3.24078e-14
     float pcInKm = 3.24078e-14f;
 
 
     // We need to be able to know how "far away" the furthest star is from
     // the centre of mass as a way to initialize the camera.
-    public float clusterMaxRadius;
+    float clusterMaxRadius;
     float currentRadius;
     // So we will need to be able to grab the Main Camera.
     GameObject mainCamera;

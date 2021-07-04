@@ -258,7 +258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -122, y: 10}
+  m_AnchoredPosition: {x: -175, y: 10}
   m_SizeDelta: {x: 275, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507512006
@@ -787,7 +787,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9bffdc67ecc0f424c9d8a994a168068c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f41cc257bee554918b02913aca7bca77, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 1168291257}
   - component: {fileID: 1168291256}
   m_Layer: 5
-  m_Name: DistanceFromCentre
+  m_Name: LocalCameraData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1031,7 +1031,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 30}
+  m_SizeDelta: {x: 230, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168291256
 MonoBehaviour:
@@ -1066,7 +1066,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Distance: xxxx (pc)'
+  m_Text: 'Distance (pc): xxxx
+
+    Mass Density:  XXXX '
 --- !u!222 &1168291257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1261,9 +1263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pcUnits: 0.1
-  cameraStartCenter: 0
-  cameraStartOutskirt: 1
+  cameraStartCenter: 1
+  cameraStartOutskirt: 0
   Star: {fileID: 446260060437403108, guid: 998142205b5214fa6a74f02bd2037337, type: 3}
   assetFileLocation: 47Tuc
   timeScale: 0
-  stepSize: 5
+  stepSize: 100

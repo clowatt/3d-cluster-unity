@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: d879e40a01204447baeebe563070981b
   m_SerializeEntries:
   - m_GUID: 16169b759f462419b8f634311d441645
-    m_Address: ToySnapshot
+    m_Address: Assets/DataFiles/snapshot.txt
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
